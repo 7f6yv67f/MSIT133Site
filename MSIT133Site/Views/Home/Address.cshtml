@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>Address</h1>
+<select id="select1">
+    @*<option value="1">Item1</option>
+        <option value="2">Item2</option>
+        <option value="3">text</option>*@
+</select>
+@section Scripts{
+    <script>
+    const selCity = document.querySelector('#select1');
+    selCity.addEventListener('change',()=> {
+        console.log(selCity.options[selCity.selectedIndex].value);
+    })
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+        const datas = JSON.parse(xhr.responseText);
+        //console.log(datas);
+        //步驟四讀出JSON資料
+        datas.forEach((item) => {
+            //console.log(item.city);
+            //步驟五顯示資料
+            const opt = new Option(item.city, item.city);
+            selCity.options.add(opt);
+
+        })
+    })
+    xhr.open("get","@Url.Content("~/api/city")");
+    xhr.send();
+    </script>
+}

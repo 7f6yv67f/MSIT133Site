@@ -53,8 +53,11 @@
                 divMessage.innerHTML = "您取消這次的執行";
             })
             //步驟二對伺服器發出要求(Request)
-            xhr.open("GET", `/api/index?username=${txtName.value}&age=${txtAge.value}`);//打開瀏覽器輸入網址
-            xhr.timeout = 2000;
+            const url = "@Url.Content("~/api/index")";
+            const pararms =`?userName=${txtName.value}&age=${txtAge.value}`;
+            //xhr.open("GET", `/api/index?username=${txtName.value}&age=${txtAge.value}`);//打開瀏覽器輸入網址
+            xhr.open("GET", `${url}${pararms}`)
+            xhr.timeout = 5000;
             xhr.send();//Enter鍵
         })
         //使用者可以取消程式的執行

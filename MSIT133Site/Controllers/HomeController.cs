@@ -40,5 +40,25 @@ namespace MSIT133Site.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult AjaxPost()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AjaxPost(User user)
+        {
+            ViewBag.name = user.userName;
+            return View();
+        }
+        public IActionResult AjaxFormData()
+        {
+            return View();
+        }
+        public IActionResult Address()
+        {
+            return View();
+        }
     }
 }
