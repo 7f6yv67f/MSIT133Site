@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Homework";
+}
+
+<h1>Homework</h1>
+<div>
+    Name:
+    <input type="text" id="txtName" /> <input type="button" value="Enter" id="buttonCheckName" />
+</div>
+<div id="div1"></div>
+@*<div>
+    Email:
+    <input type="text" id="txtEmail"  />
+</div>*@
+
+
+@section Scripts{ 
+<script>
+    const btn = document.querySelector('#buttonCheckName');
+    const divMessage = document.querySelector('#div1');
+    const txtName = document.querySelector('#txtName');
+    //const txtEmail = document.querySelector('#txtEmail');
+
+        //步驟一 建立Ajax物件
+    const xhr = new XMLHttpRequest();
+
+    btn.addEventListener('click', () => {
+
+
+        //步驟三接收伺服器回傳的結果(Response)
+        //load事件表示伺服器已經回傳結果到Client端了
+        xhr.addEventListener("load", () => {
+            //接收結果顯示在div中
+            const data = xhr.responseText;
+            divMessage.innerHTML = data;
+        })
+
+        //步驟二對伺服器發出要求(Request)
+        xhr.open("GET", `/api/CheckName?Name=${txtName.value}`);//打開瀏覽器輸入網址
+        xhr.send();//Enter鍵
+    })
+</script>
+}
