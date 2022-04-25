@@ -60,5 +60,10 @@ namespace MSIT133Site.Controllers
         {
             return View();
         }
+
+        public IActionResult Promise()
+        {
+            return View();
+        }
     }
 }
