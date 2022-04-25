@@ -108,5 +108,11 @@ namespace MSIT133Site.Controllers
 
             return Json(roads);
         }
+        public IActionResult GetImageByte(int id = 1)
+        {
+            Member member = _context.Members.Find(id);
+            byte[] img = member.FileData;
+            return File(img, "image/jpeg");
+        }
     }
 }
